@@ -97,18 +97,19 @@ namespace ScrapetheData
                 var table = htmlDoc.DocumentNode.Descendants("table").Where(d => d.Attributes.Contains("bgcolor") && d.Attributes["bgcolor"].Value.Contains("#EAEAEA")).First();
                 var rows = table.Descendants("tr");
 
-                int count = 0;
+                //int count = 0;
                 foreach (var tr in rows)
                 {
-                    if (pageNumber == 1 && count == 0)
-                    {
-                        //    continue;
-                        tableData += String.Join(",", tr.Descendants("td").Select(x => x.InnerText)) + Environment.NewLine;
-                    }
-                    else
-                    {
+                    tableData += String.Join(",", tr.Descendants("td").Select(x => x.InnerText)) + Environment.NewLine;
+                    //if (pageNumber == 1 && count == 0)
+                    //{
+                    //    //    continue;
+                    //    tableData += String.Join(",", tr.Descendants("td").Select(x => x.InnerText)) + Environment.NewLine;
+                    //}
+                    //else
+                    //{
 
-                    }
+                    //}
                 }
                 WriteToFile(startDate, endDate, currency, tableData);
             }
